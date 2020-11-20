@@ -33,6 +33,7 @@ the GitHub repository for the CSCI596 final project
 
 ### Collaborative Filtering (Harnessing quality judgments of other users):
 This time we will implement memory-based approaches
+![GitHub](https://raw.githubusercontent.com/ZhufengQiu/csci596_final_project/main/img/work_flow.jpg)
 #### (1)	User-based CF
 1.	During the training process
     
@@ -56,4 +57,6 @@ we will use the model to predict the rating for a given pair of user and busines
 
 
 ## The Comparison between Content-based and Memory-based Method
+
+<img width="824" height="363.2" src="https://raw.githubusercontent.com/ZhufengQiu/csci596_final_project/main/img/comparison_between_cb_and_cf.png"/>
 
