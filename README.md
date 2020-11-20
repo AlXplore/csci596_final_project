@@ -1,6 +1,13 @@
 # csci596_final_project
 the GitHub repository for the CSCI596 final project
 
+## Group Menbers
+    Zhufeng Qiu
+    Yizhou Wu
+    Haoran Liu
+    Zehao Zhao
+
+
 ## High-level of Recommendation System
 
 ### Content-based:
@@ -9,10 +16,12 @@ the GitHub repository for the CSCI596 final project
 
 ### Collaborative filtering:
 1.	Build a model from
->a user's past behavior (e.g., businesses previously reviewed), and similar decisions made by other users
+    
+    a user's past behavior (e.g., businesses previously reviewed), and similar decisions made by other users
+    
 2.	Use the model to predict items that the user may like
 
-Collaborative: suggestions made to a user utilizing information across the entire user base
+    Collaborative: suggestions made to a user utilizing information across the entire user base
 
 
 ## Work flow of our final project (Implementation)
@@ -24,17 +33,27 @@ Collaborative: suggestions made to a user utilizing information across the entir
 
 ### Collaborative Filtering (Harnessing quality judgments of other users):
 This time we will implement memory-based approaches
-### (1)	User-based CF
+#### (1)	User-based CF
 1.	During the training process
->1.	identify user pairs who are similar using their co-rated businesses without considering their rating scores.
->2.	compute the Pearson correlation for the user pair candidates 
->* If the number of potential user pairs is too large to compute in memory, we will combine the Min-Hash and LSH algorithms in the user-based CF recommendation system.
+    
+    1. identify user pairs who are similar using their co-rated businesses without considering their rating scores.
+    
+    2. compute the Pearson correlation for the user pair candidates 
+    
+* If the number of potential user pairs is too large to compute in memory, we will combine the Min-Hash and LSH algorithms in the user-based CF recommendation system.
 
 2.	During the predicting process
 we will use the model to predict the rating for a given pair of user and business.
 
-### (2)	Item-based CF
+#### (2)	Item-based CF
 1.	During the training process
->we will build a model by computing the Pearson correlation for the business pairs that have at least 3 co-rated users, and our model will only contain the valid pairs that have positive Pearson similarity.
+    
+    we will build a model by computing the Pearson correlation for the business pairs that have at least 3 co-rated users, and our model will only contain the valid pairs that have positive Pearson similarity.
+    
 2.	During the predicting process
->we will use the model and at most three business neighbors to predict the rating for a given pair of user and business.
+    
+    we will use the model and at most three business neighbors to predict the rating for a given pair of user and business.
+
+
+## The Comparison between Content-based and Memory-based Method
+
