@@ -1,4 +1,4 @@
-# csci596_final_project
+# Implementing Recommendation Systems with GPUs
 the GitHub repository for the CSCI596 final project
 
 ## Group Menbers
@@ -6,6 +6,7 @@ the GitHub repository for the CSCI596 final project
     Yizhou Wu
     Haoran Liu
     Zehao Zhao
+
 
 
 ## High-level of Recommendation System
@@ -22,6 +23,7 @@ the GitHub repository for the CSCI596 final project
 2.	Use the model to predict items that the user may like
 
     Collaborative: suggestions made to a user utilizing information across the entire user base
+
 
 
 ## Work flow of our final project (Implementation)
@@ -54,6 +56,10 @@ we will use the model to predict the rating for a given pair of user and busines
 2.	During the predicting process
     
     we will use the model and at most three business neighbors to predict the rating for a given pair of user and business.
+
+### Implemention with GPUs
+Since review dataset is too large to be analyzed by a single computing node, so the traditional recommendation based on single CPU is hard to meet our requirement. Therefore, we will use CUDA to accelerate the calculation speed and avoid memory corruption.
+
 
 
 ## The Comparison between Content-based and Memory-based Method
