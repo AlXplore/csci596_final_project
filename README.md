@@ -1,4 +1,4 @@
-# Implementing Recommendation Systems with GPUs
+# Implementing Recommendation Systems
 the GitHub repository for the CSCI596 final project
 
 ## Group Menbers
@@ -57,8 +57,8 @@ we will use the model to predict the rating for a given pair of user and busines
     
     we will use the model and at most three business neighbors to predict the rating for a given pair of user and business.
 
-### Implemention with GPUs
-Since review dataset is too large to be analyzed by a single computing node, so the traditional recommendation based on single CPU is hard to meet our requirement. Therefore, we will use CUDA to accelerate the calculation speed and avoid memory corruption.
+### Implemention with scala
+Since review dataset is too large to be analyzed by a single computing node, so the traditional recommendation based on single CPU is hard to meet our requirement. Therefore, we will use Apache Spark to accelerate the calculation speed and avoid memory corruption.
 
 
 
