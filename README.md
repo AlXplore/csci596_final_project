@@ -146,7 +146,7 @@ This time, we will name the JAR package as `csci596-final.jar`
     1. Training process
         - Implementation command
         
-             `$ spark-submit --class task2train hw3.jar < train_dataset > <model_filename> <stopwords>`
+             `$ spark-submit --class task2train csci596-final.jar < train_dataset > <model_filename> <stopwords>`
                 
                 argument list
                     train_dataset: input file which is the train dataset
@@ -177,7 +177,7 @@ This time, we will name the JAR package as `csci596-final.jar`
     2. Prdicting process
         - Implementation command
                 
-             `$ spark-submit --class task2predict hw3.jar <test_dataset> <model_filename> <output_file>`
+             `$ spark-submit --class task2predict csci596-final.jar <test_dataset> <model_filename> <output_file>`
                 
                 argument list
                     test_ dataset: input file which is the target predict dataset
