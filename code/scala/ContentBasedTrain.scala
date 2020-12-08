@@ -25,7 +25,7 @@ object ContentBasedTrain {
     val model_file = args(1)
     val stopwords = args(2)
 
-
+ 
     var stop_punctuations = Set("(", "[", ",", ".", "!", "?", ":", ";", "]", ")", "1", "2", "3", "4", "5", "6", "7", "8", "9", "0", "$", "/", "\\", "\"", "%", "#")
 
     val conf = new SparkConf().setAppName("csci596-CB").setMaster("local[*]").setAll(Array(("spark.executor.memory", "4g"), ("spark.driver.memory", "4g")))
