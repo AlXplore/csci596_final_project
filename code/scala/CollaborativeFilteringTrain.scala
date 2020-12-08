@@ -1,7 +1,7 @@
 import org.apache.spark.SparkConf
 import org.apache.spark.SparkContext
 import java.io._
-
+ 
 import scala.io.Source
 import org.json4s._
 import org.json4s.jackson.JsonMethods._
