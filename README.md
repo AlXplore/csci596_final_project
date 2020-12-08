@@ -2,6 +2,8 @@
 the GitHub repository for the CSCI596 final project
 
 ## Group Menbers
+   | Name        | USC-ID     |
+   | :---------- | :--------- |
    | Zhufeng Qiu | 6676753248 |
    | Yizhou Wu   |            |
    | Haoran Liu  |            |
@@ -84,35 +86,57 @@ the format of train and predict dataset is as follow.
 # Scala Script Description
 1.	build.sbt – add spark-related dependencies to enable us run tests and package our projects as JAR files.
 2.	Collaborative Filtering Recommendation System
- - CollaborativeFilteringTrain.scala – build a user-based or item-based model for recommendation system.
- - CollaborativeFilteringPredict.scala – predict the similarity for the target user and business based on the previous user-based or item-based model
+    - CollaborativeFilteringTrain.scala – build a user-based or item-based model for recommendation system
+        - input: train dataset (user and business pairs with review text)
+        - output: user profiles and business profiles which are defined by using most frequent word
+        
+    - CollaborativeFilteringPredict.scala – predict the similarity for the target user and business based on the previous user-based or item-based model
+        - input: the model from the training process
+        - output: the potential ratings that a user would give to a business
+        
 3. Content Based Recommendation System
- - ContentBasedTrain.scala - build a content-based model for recommendation system.
- - ContentBasedPredict.scala - predict the similarity for the target user and business based on the previous user-based or item-based model
+    - ContentBasedTrain.scala - build a content-based model for recommendation system.
+        - input: train dataset (user and business pairs with review text)
+        - output: the similarity between different users or between different business
+        
+    - ContentBasedPredict.scala - predict the similarity for the target user and business based on the previous user-based or item-based model
+        - input: the similarity between different users or between different business
+        - output: the potential ratings that a user would give to a business
 
 # Running project locally and Result
+Before implementation the Scala script, we need to arti
 1. Collaborative Filtering Recommendation System
     1. Training process
         - Implementation command
         
              `$ spark-submit --class CollaborativeFilteringTrain csci596-final.jar <train_dataset> <model _filename> <cf_type>`
                 
-                1. train_dataset:input file which is the train dataset
-                2. model _filename: output file which contains user-based or item-based model
-                3. cf_type: “user-based” or item-based
-        - Result
+                Arguments
+                    train_dataset: input file which is the train dataset
+                    model _filename: output file which contains user-based or item-based model
+                    cf_type： “user-based” or “item-based”              
         
-    2. Prdicting process
+    2. Predicting process
         - Implementation command
         
              `$ spark-submit --class CollaborativeFilteringPredict csci596-final.jar <train_dataset> <test_ dataset > <model _filename> <output_filename> <cf_type>`
                 
-                1. train_dataset:input file which is the train dataset
-                2. test_ dataset: input file which is the target predict dataset
-                3. model _filename: user-based or item-based model file
-                4. output_filename: the similarity for the target user and business pairs
-                5. cf_type: “user-based” or item-based
-        - Result
+                Arguments
+                    train_dataset: input file which is the train dataset
+                    test_ dataset: input file which is the target predict dataset
+                    model _filename: user-based or item-based model file
+                    output_filename: the similarity for the target user and business pairs
+                    cf_type: “user-based” or “item-based”
+        
+        - the format of content-based prediction
+                
+              {"user_id":"mEzc6LeTNiQgIVsq3poMbg","business_id":"9UVkAmyodpaSBm49DBKFNw","sim":0.307655132236926}
+              {"user_id":"QtMgqKY_GF3XkOpXonaExA","business_id":"IJUCRd5v-XLkcGrKjb8IfA","sim":0.23060301706458639}
+              {"user_id":"nwvnNIixvyYTg4JS8g3Xgg","business_id":"WQyGqfFKd-baBTVfZWzeTw","sim":0.12567127448533824}
+              {"user_id":"aZtJzH3fRIRzrGnQRIVaRg","business_id":"bKbYRUZKDYonSPOjzchJJg","sim":0.3219211724504379}
+              {"user_id":"Vp5DzIiP_MmaMZMZVFFltA","business_id":"ujHiaprwCQ5ewziu0Vi9rw","sim":0.6395112949403444}
+              {"user_id":"srm0YUaJubOLxs4ByEZpwg","business_id":"iCQpiavjjPzJ5_3gPD5Ebg","sim":0.3051479758236465}
+              {"user_id":"XCNi6raOHuxmI66Cg2Er2Q","business_id":"YJ8ljUhLsz6CtT_2ORNFmg","sim":0.22512290371929625}
         
 3. Content Based Recommendation System
     1. Training process
@@ -120,18 +144,57 @@ the format of train and predict dataset is as follow.
         
              `$ spark-submit --class task2train hw3.jar < train_dataset > <model_filename> <stopwords>`
                 
-                1. train_dataset:input file which is the train dataset
-                2. model _filename: output file which contains content-based model
-                3. stopwords: input file which contains useless or meaningless words
-        - Result
+                Arguments
+                    train_dataset: input file which is the train dataset
+                    model _filename: output file which contains content-based model
+                    stopwords: input file which contains useless or meaningless words
+       
+       - the format of item-based model
+                  
+              {"b1":"RodA_gxhr2Mj-pyQAL2RAQ","b2":"VMXl3Dm1Nwvgwo1PVYTXbg","sim":0.49999999999999994}
+              {"b1":"GmwpYbZBpKn6K5SuQffT6A","b2":"UMqfeCItzQ2glr4d9apGlA","sim":0.5773502691896258}
+              {"b1":"HmsCerK_rub0Ulo0aC0f9A","b2":"eLFfWcdb7VkqNyTONksHiQ","sim":0.16666666666666663}
+              {"b1":"YXohNvMTCmGhFMSQsDZq1g","b2":"UGy0QULAPPRcOUJQSiRmGQ","sim":1.0}
+              {"b1":"tQifTiY-vutj8orxcMJKfQ","b2":"qkyCuFJF2Uboh6n2Lmuwlg","sim":0.3461538461538461}
+              {"b1":"g8OnV26ywJlZpezdBnOWUQ","b2":"bgXb5YYzQvHXmM8owZB4fQ","sim":0.4178554470186725}
+              {"b1":"n8Zqqhff-2cxzWt_nwhU2Q","b2":"E83nSU_y9zedOzQnkTjV1g","sim":0.2738612787525831}
+              {"b1":"TL5Dtfnf-5hYG13lBF9N2A","b2":"8K3CRM4COa0SSBEvli0fJQ","sim":0.6882472016116852}
+       - the format of user-based model
+              
+              {"u1":"kkTOV5bnE9hHb5V_zd9b9g","u2":"kVyOe_qIsGAlk0wo9n9_9g","sim":0.5}
+              {"u1":"dAfdS9l7DOMze3orptDxiQ","u2":"AyjqBovADgbskmLrIBOMlQ","sim":0.11322770341445963}
+              {"u1":"WJjUk1-gib1AD4u-q2VNYA","u2":"n78PhLGZAiBiQIErPNMn2g","sim":0.6933752452815363}
+              {"u1":"pnTiEaqM4slogpY97n9Kvg","u2":"Pf7FI0OukC_CEcCz0ZxoUw","sim":0.42640143271122083}
+              {"u1":"BI4jBJVto2tEQ0NiaR0rNQ","u2":"Y3PQ5P_R7jcgiIS_1dIv-w","sim":0.43386091563731244}
+              {"u1":"BvVAypE18TeuMdF1aDw51g","u2":"WfbJKGJWj2yQ50XRku-OzQ","sim":0.7559289460184545}
+              {"u1":"R4Jif1Q7vseoA2TqfzeQPQ","u2":"HRyFtrmf19GTKEM_kOa2pg","sim":0.9999999999999999}
+        
     2. Prdicting process
         - Implementation command
                 
              `$ spark-submit --class task2predict hw3.jar <test_dataset> <model_filename> <output_file>`
                 
-                1. test_ dataset: input file which is the target predict dataset
-                2. model _filename: output file which contains content-based model
-                3. output_file: the similarity for the target user and business pairs
-        - Result
-    
+                Arguments
+                    test_ dataset: input file which is the target predict dataset
+                    model _filename: output file which contains content-based model
+                    output_file: the similarity for the target user and business pairs
+        
+        - the format of item-based prediction
+        
+              {"user_id":"mEzc6LeTNiQgIVsq3poMbg","business_id":"9UVkAmyodpaSBm49DBKFNw","stars":3.188381266947627}
+              {"user_id":"QtMgqKY_GF3XkOpXonaExA","business_id":"IJUCRd5v-XLkcGrKjb8IfA","stars":4.071286541577826}
+              {"user_id":"nwvnNIixvyYTg4JS8g3Xgg","business_id":"WQyGqfFKd-baBTVfZWzeTw","stars":3.3484779210974254}
+              {"user_id":"aZtJzH3fRIRzrGnQRIVaRg","business_id":"bKbYRUZKDYonSPOjzchJJg","stars":4.654191548467289}
+              {"user_id":"Vp5DzIiP_MmaMZMZVFFltA","business_id":"ujHiaprwCQ5ewziu0Vi9rw","stars":4.207684051798747}
+              {"user_id":"srm0YUaJubOLxs4ByEZpwg","business_id":"iCQpiavjjPzJ5_3gPD5Ebg","stars":3.816061612269136}
+              {"user_id":"XCNi6raOHuxmI66Cg2Er2Q","business_id":"YJ8ljUhLsz6CtT_2ORNFmg","stars":4.013062460330373}
+        
+        - the format of item-based prediction
 
+              {"user_id":"QuZbJquRtbY9O9JrB9NpxQ","business_id":"6EWqsE6Ojvt-FA-rl8Sm4Q","stars":3.678432536992683}
+              {"user_id":"kwIhn1_cnQeUaLN0CuWWHw","business_id":"TKcq0hOqesiDOwQb-ZwFAw","stars":3.574360696549783}
+              {"user_id":"7fyAtRSYYqOKZPr39L2UYg","business_id":"uGupeWqih0yIcCg8anM1PA","stars":4.081740261115626}
+              {"user_id":"iSC96O2NjQc3JExGUHQG0Q","business_id":"_gMR_YdsMwwKy63-UwjdnA","stars":3.931358147592911}
+              {"user_id":"rkZ_FQ1yWxPOm3JCv_wKwQ","business_id":"5eV8oUGdBXylwB7HeaDFOA","stars":4.080688164649474}
+              {"user_id":"Rt9-31f2wdutUiIrO11_Jw","business_id":"IB8zLlGraOg9LU7qQVLPyg","stars":3.963358222967877}
+              {"user_id":"vWP8-aQX0rYJszqkWVL7Ew","business_id":"rF183_3e0ybElRKdNSwJqQ","stars":3.087735813372279}
