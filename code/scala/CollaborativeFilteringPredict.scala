@@ -26,7 +26,7 @@ object CollaborativeFilteringPredict {
 //    val business_avg_file = train_file.slice(0, f_idx) + "/business_avg.json"
 //    val cf_type = "user_based"
     //val cf_type = "item_based"
-
+ 
     val train_file = args(0)
     val test_file = args(1)
     val model_file = args(2)
