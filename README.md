@@ -1,7 +1,7 @@
 # Implementing Recommendation Systems
 the GitHub repository for the CSCI596 final project
 
-## Group Menbers
+## Group Members
    | Name        | USC-ID     |
    | :---------- | :--------- |
    | Zhufeng Qiu | 6676753248 |
@@ -28,16 +28,16 @@ the GitHub repository for the CSCI596 final project
 
 
 
-## Work flow of our final project (Implementation)
+## Workflow of our final project (Implementation)
 ![GitHub](https://raw.githubusercontent.com/ZhufengQiu/csci596_final_project/main/img/work_flow.jpg)
 ### Content-based: 
 1.	Concatenate all the review texts for the business as the document and parse the document, such as removing the punctuations, numbers, stop-words, and extremely rare words.
-2.	Measuring word importance using TF-IDF, and represent business (create business profiles) by using a set of most important words (like top 200 words)
+2.	Measuring word importance using TF-IDF, and represent a business (create business profiles) by using a set of most important words (like top 200 words)
 3.	Create corresponding user profiles by aggregating the profiles of the businesses that each user reviewed.
-4.	Use machine learning techniques to estimate degree to which user would review a business.
+4.	Use machine learning techniques to estimate the rating to which the user would review a business.
 
 ### Collaborative Filtering (Harnessing quality judgments of other users):
-This time we will implement memory-based approaches
+This time we will implement memory-based approaches.
 #### (1)	User-based CF
 1.	During the training process
     
@@ -48,16 +48,17 @@ This time we will implement memory-based approaches
 * If the number of potential user pairs is too large to compute in memory, we will combine the Min-Hash and LSH algorithms in the user-based CF recommendation system.
 
 2.	During the predicting process
-we will use the model to predict the rating for a given pair of user and business.
+    
+    We will use the model to predict the rating for a given pair of user and business.
 
 #### (2)	Item-based CF
 1.	During the training process
     
-    we will build a model by computing the Pearson correlation for the business pairs that have at least 3 co-rated users, and our model will only contain the valid pairs that have positive Pearson similarity.
+    We will build a model by computing the Pearson correlation for the business pairs that have at least three co-rated users, and our model will only contain the valid pairs that have positive Pearson similarity.
     
 2.	During the predicting process
     
-    we will use the model and at most three business neighbors to predict the rating for a given pair of user and business.
+    We will use the model and at most three business neighbors to predict the rating for a given pair of user and business.
 
 
 
@@ -68,10 +69,10 @@ we will use the model to predict the rating for a given pair of user and busines
 
 
 # Getting Started
-Since review dataset is too large to be analyzed by a single computing node, so the traditional recommendation based on single CPU or one computer node is hard to meet our requirement. Therefore, we will use Apache Spark to implement the distributed computation which can accelerate the calculation speed and avoid memory corruption. In this project, we will use the Spark API through Scala, and the version of Scala is 2.3.2.
+Since the review dataset is too large to be analyzed by a single computing node, so the traditional recommendation based on a single CPU or one computer node is hard to meet our requirement. Therefore, we will use Apache Spark to implement the distributed computation, which can accelerate the calculation speed and avoid memory corruption. In this project, we will use the Spark API through Scala, and the version of Scala is 2.3.2.
 
 # Dataset
-we can access Yelp user and business dataset from [Yelp Dataset](https://www.yelp.com/dataset), and in this project, we use the following five files.
+We can access Yelp user and business dataset from [Yelp Dataset](https://www.yelp.com/dataset), and in this project, we use the following five files.
 
 1.	train_review.json – train dataset: the user and business pair for training
 2.	test_review.json – predict dataset: the target user and business pairs for prediction
@@ -79,32 +80,35 @@ we can access Yelp user and business dataset from [Yelp Dataset](https://www.yel
 4.	user_avg.json – the average ratings for the users in the train dataset 
 5.	business_avg.json – the average ratings for the businesses in the train dataset
 
-the format of train and predict dataset is as follow.
+The format of train and predict dataset is as follows.
 
-<img width="316" height="380" src="https://raw.githubusercontent.com/ZhufengQiu/csci596_final_project/main/img/data.png"/>
+<div align=center><img width="316" height="380" src="https://raw.githubusercontent.com/ZhufengQiu/csci596_final_project/main/img/data.png"/> </div>
 
 # Scala Script Description
 1.	build.sbt – add spark-related dependencies to enable us run tests and package our projects as JAR files.
 2.	Collaborative Filtering Recommendation System
-    - CollaborativeFilteringTrain.scala – build a user-based or item-based model for recommendation system
+    - CollaborativeFilteringTrain.scala – build a user-based or item-based model for recommendation system.
         - input: train dataset (user and business pairs with review text)
-        - output: user profiles and business profiles which are defined by using most frequent word
+        - output: user profiles and business profiles, which are defined by using most frequent word
         
-    - CollaborativeFilteringPredict.scala – predict the similarity for the target user and business based on the previous user-based or item-based model
+    - CollaborativeFilteringPredict.scala – predict the similarity for the target user and business based on the previous user-based or item-based model.
         - input: the model from the training process
-        - output: the potential ratings that a user would give to a business
+        - output: the potential rating to which the user would review a business.
         
-3. Content Based Recommendation System
+3. Content-Based Recommendation System
     - ContentBasedTrain.scala - build a content-based model for recommendation system.
         - input: train dataset (user and business pairs with review text)
         - output: the similarity between different users or between different business
         
-    - ContentBasedPredict.scala - predict the similarity for the target user and business based on the previous user-based or item-based model
+    - ContentBasedPredict.scala - predict the similarity for the target user and business based on the previous user-based or item-based model.
         - input: the similarity between different users or between different business
-        - output: the potential ratings that a user would give to a business
+        - output: the potential rating to which the user would review a business.
 
 # Running project locally and Result
-Before implementation the Scala script, we need to arti
+Before implementation of the Scala script, we need to package our project.
+For IntelliJ IDEA, go to File--->project structure --> Artifacts, then check the content of this project before building the JAR package.
+This time, we will name the JAR package as `csci596-final.jar`
+
 1. Collaborative Filtering Recommendation System
     1. Training process
         - Implementation command
@@ -138,7 +142,7 @@ Before implementation the Scala script, we need to arti
               {"user_id":"srm0YUaJubOLxs4ByEZpwg","business_id":"iCQpiavjjPzJ5_3gPD5Ebg","sim":0.3051479758236465}
               {"user_id":"XCNi6raOHuxmI66Cg2Er2Q","business_id":"YJ8ljUhLsz6CtT_2ORNFmg","sim":0.22512290371929625}
         
-3. Content Based Recommendation System
+3. Content-Based Recommendation System
     1. Training process
         - Implementation command
         
