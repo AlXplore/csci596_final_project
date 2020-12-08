@@ -26,7 +26,7 @@ object ContentBasedPredict {
 
     val conf = new SparkConf().setAppName("csci596-CB").setMaster("local[*]").setAll(Array(("spark.executor.memory", "4g"), ("spark.driver.memory", "4g")))
     val sc = new SparkContext(conf)
-
+ 
     val test_data = sc.textFile(test_file).map(string => parse(string).values.asInstanceOf[Map[String,String]]).map(x => (x("user_id"), x("business_id")))
     val model_data = sc.textFile(model_file).zipWithIndex().persist()
     //model_data.take(5).foreach(println)
