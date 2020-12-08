@@ -41,9 +41,9 @@ This time we will implement memory-based approaches.
 #### (1)	User-based CF
 1.	During the training process
     
-    1. identify user pairs who are similar using their co-rated businesses without considering their rating scores.
+    1. Identify user pairs who are similar using their co-rated businesses without considering their rating scores.
     
-    2. compute the Pearson correlation for the user pair candidates 
+    2. Compute the Pearson correlation for the user pair candidates 
     
 * If the number of potential user pairs is too large to compute in memory, we will combine the Min-Hash and LSH algorithms in the user-based CF recommendation system.
 
@@ -115,7 +115,7 @@ This time, we will name the JAR package as `csci596-final.jar`
         
              `$ spark-submit --class CollaborativeFilteringTrain csci596-final.jar <train_dataset> <model _filename> <cf_type>`
                 
-                Arguments
+                argument list
                     train_dataset: input file which is the train dataset
                     model _filename: output file which contains user-based or item-based model
                     cf_type： “user-based” or “item-based”              
@@ -125,14 +125,14 @@ This time, we will name the JAR package as `csci596-final.jar`
         
              `$ spark-submit --class CollaborativeFilteringPredict csci596-final.jar <train_dataset> <test_ dataset > <model _filename> <output_filename> <cf_type>`
                 
-                Arguments
+                argument list
                     train_dataset: input file which is the train dataset
                     test_ dataset: input file which is the target predict dataset
                     model _filename: user-based or item-based model file
                     output_filename: the similarity for the target user and business pairs
                     cf_type: “user-based” or “item-based”
         
-        - the format of content-based prediction
+        - The format of content-based prediction
                 
               {"user_id":"mEzc6LeTNiQgIVsq3poMbg","business_id":"9UVkAmyodpaSBm49DBKFNw","sim":0.307655132236926}
               {"user_id":"QtMgqKY_GF3XkOpXonaExA","business_id":"IJUCRd5v-XLkcGrKjb8IfA","sim":0.23060301706458639}
@@ -148,12 +148,12 @@ This time, we will name the JAR package as `csci596-final.jar`
         
              `$ spark-submit --class task2train hw3.jar < train_dataset > <model_filename> <stopwords>`
                 
-                Arguments
+                argument list
                     train_dataset: input file which is the train dataset
                     model _filename: output file which contains content-based model
                     stopwords: input file which contains useless or meaningless words
        
-       - the format of item-based model
+       - The format of item-based model
                   
               {"b1":"RodA_gxhr2Mj-pyQAL2RAQ","b2":"VMXl3Dm1Nwvgwo1PVYTXbg","sim":0.49999999999999994}
               {"b1":"GmwpYbZBpKn6K5SuQffT6A","b2":"UMqfeCItzQ2glr4d9apGlA","sim":0.5773502691896258}
@@ -163,7 +163,8 @@ This time, we will name the JAR package as `csci596-final.jar`
               {"b1":"g8OnV26ywJlZpezdBnOWUQ","b2":"bgXb5YYzQvHXmM8owZB4fQ","sim":0.4178554470186725}
               {"b1":"n8Zqqhff-2cxzWt_nwhU2Q","b2":"E83nSU_y9zedOzQnkTjV1g","sim":0.2738612787525831}
               {"b1":"TL5Dtfnf-5hYG13lBF9N2A","b2":"8K3CRM4COa0SSBEvli0fJQ","sim":0.6882472016116852}
-       - the format of user-based model
+       
+       - The format of user-based model
               
               {"u1":"kkTOV5bnE9hHb5V_zd9b9g","u2":"kVyOe_qIsGAlk0wo9n9_9g","sim":0.5}
               {"u1":"dAfdS9l7DOMze3orptDxiQ","u2":"AyjqBovADgbskmLrIBOMlQ","sim":0.11322770341445963}
@@ -178,12 +179,12 @@ This time, we will name the JAR package as `csci596-final.jar`
                 
              `$ spark-submit --class task2predict hw3.jar <test_dataset> <model_filename> <output_file>`
                 
-                Arguments
+                argument list
                     test_ dataset: input file which is the target predict dataset
                     model _filename: output file which contains content-based model
                     output_file: the similarity for the target user and business pairs
         
-        - the format of item-based prediction
+        - The format of item-based prediction
         
               {"user_id":"mEzc6LeTNiQgIVsq3poMbg","business_id":"9UVkAmyodpaSBm49DBKFNw","stars":3.188381266947627}
               {"user_id":"QtMgqKY_GF3XkOpXonaExA","business_id":"IJUCRd5v-XLkcGrKjb8IfA","stars":4.071286541577826}
@@ -193,7 +194,7 @@ This time, we will name the JAR package as `csci596-final.jar`
               {"user_id":"srm0YUaJubOLxs4ByEZpwg","business_id":"iCQpiavjjPzJ5_3gPD5Ebg","stars":3.816061612269136}
               {"user_id":"XCNi6raOHuxmI66Cg2Er2Q","business_id":"YJ8ljUhLsz6CtT_2ORNFmg","stars":4.013062460330373}
         
-        - the format of item-based prediction
+        - The format of item-based prediction
 
               {"user_id":"QuZbJquRtbY9O9JrB9NpxQ","business_id":"6EWqsE6Ojvt-FA-rl8Sm4Q","stars":3.678432536992683}
               {"user_id":"kwIhn1_cnQeUaLN0CuWWHw","business_id":"TKcq0hOqesiDOwQb-ZwFAw","stars":3.574360696549783}
