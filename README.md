@@ -5,9 +5,9 @@ the GitHub repository for the CSCI596 final project
    | Name        | USC-ID     |
    | :---------- | :--------- |
    | Zhufeng Qiu | 6676753248 |
-   | Yizhou Wu   |            |
-   | Haoran Liu  |            |
-   | Zehao Zhao  |            |
+   | Yizhou Wu   | 8076649283 |
+   | Haoran Liu  | 1736796008 |
+   | Zehao Zhao  | 8170334704 |
 
 
 
