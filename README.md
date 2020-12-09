@@ -69,7 +69,10 @@ This time we will implement memory-based approaches.
 
 
 # Getting Started
-Since the review dataset is too large to be analyzed by a single computing node, so the traditional recommendation based on a single CPU or one computer node is hard to meet our requirement. Therefore, we will use Apache Spark to implement the distributed computation, which can accelerate the calculation speed and avoid memory corruption. In this project, we will use the Spark API through Scala, and the version of Scala is 2.3.2.
+Since the review dataset is too large to be analyzed by a single computing node, so the traditional recommendation based on a single CPU or one computer node is hard to meet our requirement. Therefore, we will use Apache Spark to implement the distributed computation, which can accelerate the calculation speed and avoid memory corruption. In this project, we will use the Spark API through Scala.
+
+      the version of Scala: 2.11.12
+      the version of Spark: 2.3.2
 
 # Dataset
 We can access Yelp user and business dataset from [Yelp Dataset](https://www.yelp.com/dataset) or in the [Google Drive](https://drive.google.com/drive/folders/1sbNFFPrTnCC9-zcfxwMD2U5mJxf-0d9A?usp=sharing), and in this project, we use the following five files.
